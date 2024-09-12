@@ -71,7 +71,7 @@ chain = (
 )
 
 # Run the chain
-result = chain.invoke({"product_name": "MacBook Pro"})
+result = chain.invoke({"product_name": "Framework 13"})
 
 # Output
 print(result)
