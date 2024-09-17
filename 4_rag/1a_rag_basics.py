@@ -1,14 +1,17 @@
 import os
-
+from dotenv import load_dotenv
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 
+# Load environment variables from .env
+load_dotenv()
+
 # Define the directory containing the text file and the persistent directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(current_dir, "books", "odyssey.txt")
-persistent_directory = os.path.join(current_dir, "db", "chroma_db")
+persistent_directory = os.path.join(current_dir, "db", "chroma_db")     # Where the chroma db will be stored
 
 # Check if the Chroma vector store already exists
 if not os.path.exists(persistent_directory):
@@ -21,7 +24,7 @@ if not os.path.exists(persistent_directory):
         )
 
     # Read the text content from the file
-    loader = TextLoader(file_path)
+    loader = TextLoader(file_path, encoding = "utf-8")
     documents = loader.load()
 
     # Split the document into chunks
