@@ -34,6 +34,7 @@ def query_vector_store(
             search_kwargs=search_kwargs,
         )
         relevant_docs = retriever.invoke(query)
+        print("\nFound " + str(len(relevant_docs)) + " docs.")
         # Display the relevant results with metadata
         print(f"\n--- Relevant Documents for {store_name} ---")
         for i, doc in enumerate(relevant_docs, 1):
